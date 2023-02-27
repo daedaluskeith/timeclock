@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"	xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Admin Reports</title>
+</head>
+<body>
+<h2 th:text="Reports">reports</h2>
+<a href="/">Back to Time Clock</a><br/><br/>
+
+<h2 th:text="'List of Users...'">Owners List</h2>
+
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th style="width: 100px;">Name</th>
+				<th style="width: 300px;">UserName</th>
+				<th style="width: 60px;">Type</th>
+				<th style="width: 100px;" align="center">Shifts</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="user : ${users}">
+				<td th:text="${user.name}">John Doe</td>
+				<td th:text="${user.username}">test</td>
+				<td th:text="${user.userType}">USER</td>
+				<td align="center"><a th:href="'/reports/user/' + ${user.username} + '/shifts/'">See Shifts</a></td>
+			</tr>
+		</tbody>
+	</table>
+
+</body>
+</html>

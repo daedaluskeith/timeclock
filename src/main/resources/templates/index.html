@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"	xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Time Clock Application</title>
+</head>
+<body>
+	<div>Welcome <strong th:text="${name}"></strong> to the Time Clock application</div><br/>
+	<div th:if="${start != null && admin == null}">
+		<a href="/clockin">clock in</a>
+	</div>
+	<div th:if="${onShift != null && admin == null}">
+		<a href="/takebreak">Take a break</a>
+		<a href="/takelunch">Take lunch</a>
+		<a href="/clockout">clock out</a>
+	</div>
+	<div th:if="${onbreak != null && admin == null}">
+		<a href="/endbreak">end break</a>
+	</div>
+	<div th:if="${atlunch != null && admin == null}">
+		<a href="/endbreak">end lunch</a>
+	</div>
+	<div th:if="${admin != null}">
+		<a href="/clockin">clock in</a>
+		<a href="/takebreak">Take a break</a>
+		<a href="/endbreak">end break</a>
+		<a href="/takelunch">Take lunch</a>
+		<a href="/endbreak">end lunch</a>
+		<a href="/clockout">clock out</a>
+		<br/><br/>
+		<a href="/reports/">Reports</a>
+	</div>
+	<br/>
+	
+	<a href="javascript: document.logoutForm.submit()" class="dropdown-toggle">Sign out</a>
+	<form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+        <input hidden type="submit" value="Sign Out" />
+    </form>
+	
+</body>
+</html>

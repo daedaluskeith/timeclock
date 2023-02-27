@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"	xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Admin Reports</title>
+</head>
+<body>
+<h2 th:text="Reports">reports</h2>
+<a href="/">Back to Time Clock</a><br/><br/>
+
+<h2 th:text="'Shifts for User'">Owners List</h2>
+
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th style="width: 150px;">Start Time</th>
+				<th style="width: 150px;">End Time</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="shift : ${shifts}">
+				<td th:text="${shift.starttime}">start</td>
+				<td th:text="${shift.endtime}">end</td>
+			</tr>
+		</tbody>
+	</table>
+
+</body>
+</html>
