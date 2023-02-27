@@ -17,6 +17,7 @@
 				<th style="width: 300px;">UserName</th>
 				<th style="width: 60px;">Type</th>
 				<th style="width: 100px;" align="center">Shifts</th>
+				<th style="width: 80px;" align="center">Total Time</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -25,6 +26,7 @@
 				<td th:text="${user.username}">test</td>
 				<td th:text="${user.userType}">USER</td>
 				<td align="center"><a th:href="'/reports/user/' + ${user.username} + '/shifts/'">See Shifts</a></td>
+				<td align="center" th:text="${hours.get(user.username)}">00:00:00</td>
 			</tr>
 		</tbody>
 	</table>
