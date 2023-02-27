@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"	xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Admin Reports</title>
+</head>
+<body>
+<h2 th:text="Reports">reports</h2>
+<a href="/">Back to Time Clock</a><br/><br/>
+<a th:href="'/reports/user/' + ${username} + '/shifts/'">Back to shift list</a><br/>
+
+<h2 th:text="'Shift Details'">Shift Details</h2>
+
+	<table>
+		<thead>
+			<tr>
+				<th style="width: 50px;">ID</th>
+				<th style="width: 150px;">Start Time</th>
+				<th style="width: 150px;">End Time</th>
+				<th style="width: 150px;">On Break/Lunch</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr >
+				<td align="center" th:text="${shift.id}">Id</td>
+				<td th:text="${shift.starttime}">start</td>
+				<td th:text="${shift.endtime}">end</td>
+				<td align="center" th:text="${shift.onBreak}">Y</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<h3>Breaks / Lunch</h3>
+	
+	<table>
+		<thead>
+			<tr>
+				<th style="width: 50px;">ID</th>
+				<th style="width: 150px;">Type</th>
+				<th style="width: 150px;">Start Time</th>
+				<th style="width: 150px;">End Time</th>
+				
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="break : ${shift.breaks}">
+				<td align="center" th:text="${break.id}">Id</td>
+				<td align="center" th:text="${break.breaktype}">Y</td>
+				<td th:text="${break.starttime}">start</td>
+				<td th:text="${break.endtime}">end</td>
+			</tr>
+		</tbody>
+	</table>
+
+</body>
+</html>

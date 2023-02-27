@@ -22,20 +22,24 @@ public class ReportsController {
 	ShiftService shiftService;
 	
 	@RequestMapping({"", "/"})
-	public String getReports() {
-		return "reports/reports";
-	}
-	
-	@RequestMapping("/users")
-	public String getAllUsers(Model model) {
+	public String getReports(Model model) {
 		model.addAttribute("users", timeClockUserService.findAll());
-		return "reports/users";
+		return "reports/reports";
 	}
 	
 	@RequestMapping({"/user/{username}/shifts", "/user/{username}/shifts/"})
 	public String getUserShifts(Model model, @PathVariable(name = "username")String username) {
 		TimeClockUser user = timeClockUserService.findByUsername(username);
 		model.addAttribute("shifts",shiftService.findByUserid(user));
+		model.addAttribute("username", username);
 		return "reports/userShifts";
+	}
+	
+	@RequestMapping({"/user/{username}/shift/{id}", "/user/{username}/shift/{id}/"})
+	public String getUserShift(Model model, @PathVariable(name = "username")String username,
+			@PathVariable(name = "id") Long id) {
+		model.addAttribute("shift",shiftService.findById(id));
+		model.addAttribute("username", username);
+		return "reports/shiftDetails";
 	}
 }
